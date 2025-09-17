@@ -28,10 +28,12 @@ type Props = React.HTMLAttributes<HTMLDivElement> & {
   placeholder?: string;
   readOnly?: boolean;
   required?: boolean;
+  textareaStyle?: React.CSSProperties;
   textareaClassName?: string;
   textareaId?: string;
 
   // Props for the hightlighted code’s pre element
+  preStyle: React.CSSProperties;
   preClassName?: string;
 };
 
@@ -119,12 +121,14 @@ const Editor = React.forwardRef(function Editor(
     padding = 0,
     placeholder,
     preClassName,
+    preStyle,
     readOnly,
     required,
     style,
     tabSize = 2,
     textareaClassName,
     textareaId,
+    textareaStyle,
     value,
     ...rest
   } = props;
@@ -545,7 +549,7 @@ const Editor = React.forwardRef(function Editor(
       <pre
         className={preClassName}
         aria-hidden="true"
-        style={{ ...styles.editor, ...styles.highlight, ...contentStyle }}
+        style={{ ...styles.editor, ...styles.highlight, ...contentStyle, ...(preStyle || {}) }}
         {...(typeof highlighted === 'string'
           ? { dangerouslySetInnerHTML: { __html: highlighted + '<br />' } }
           : { children: highlighted })}
@@ -556,6 +560,7 @@ const Editor = React.forwardRef(function Editor(
           ...styles.editor,
           ...styles.textarea,
           ...contentStyle,
+          ...(textareaStyle || {})
         }}
         className={
           className + (textareaClassName ? ` ${textareaClassName}` : '')
