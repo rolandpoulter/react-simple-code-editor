@@ -31,6 +31,7 @@ declare module 'react-simple-code-editor' {
       style?: React.CSSProperties | undefined;
       textareaId?: string | undefined;
       textareaClassName?: string | undefined;
+      textareaStyle?: React.CSSProperties | undefined;
       autoFocus?: boolean | undefined;
       disabled?: boolean | undefined;
       form?: string | undefined;
@@ -46,6 +47,7 @@ declare module 'react-simple-code-editor' {
       onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement> | undefined;
       onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement> | undefined;
       preClassName?: string | undefined;
+      preStyle?: React.CSSProperties | undefined;
     } & React.RefAttributes<{
         session: {
           history: History;
