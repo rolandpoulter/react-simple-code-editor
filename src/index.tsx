@@ -555,7 +555,11 @@ const Editor = React.forwardRef(function Editor(
           : { children: highlighted })}
       />
       <textarea
-        ref={(c) => (inputRef.current = c)}
+        ref={(((c: any) => {
+          if (inputRef) {
+            (inputRef as any).current = c as any
+          }
+        }) as any)}
         style={{
           ...styles.editor,
           ...styles.textarea,
